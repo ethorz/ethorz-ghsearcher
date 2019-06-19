@@ -10,14 +10,15 @@
     "@reach/router": "^1.2.1",
     "axios": "^0.19.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-toastify": "^5.3.0"
   },
   "devDependencies": {
     "prop-types": "^15.7.2",
     "react-scripts": "^3.0.1"
   },
   "scripts": {
-    "start": "REACT_APP_TOKEN=e43175062fd2990574f218cbe86f1981faa3b7c0 NODE_PATH=src react-scripts start",
+    "start": "REACT_APP_TOKEN=46b56cb03ee4998445ced840273f554c9f2668da NODE_PATH=src react-scripts start",
     "build": "NODE_PATH=src react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

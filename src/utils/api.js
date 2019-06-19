@@ -1,7 +1,15 @@
 import axios from 'axios';
+import {toast} from 'react-toastify';
 
 const github = axios.create({
     baseURL: 'https://api.github.com/',
+});
+
+github.interceptors.response.use((response) => {
+    return response;
+}, function(error) {
+    toast.error('Request error');
+    return Promise.reject(error);
 });
 
 const token = process.env.REACT_APP_TOKEN;

@@ -3,11 +3,13 @@ import {Router} from '@reach/router';
 import {StateProvider} from 'utils/store';
 
 import Header from 'components/Header';
+import {ToastContainer, toast} from 'react-toastify';
 
 import Main from 'containers/Main';
 import Details from 'containers/Details';
 
 import styled from '@emotion/styled';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Content = styled('div')`
     overflow: hidden;
@@ -15,7 +17,7 @@ const Content = styled('div')`
     position: relative;
 `;
 
-const InnerContent = styled('div')`
+const InnerContent = styled(Router)`
     position: absolute;
     top: 0;
     left: 0;
@@ -26,15 +28,20 @@ const InnerContent = styled('div')`
 `;
 
 const App = () => {
-    const initialState = {};
+    const initialState = {
+        query: '',
+        repository: null,
+        repositories: []
+    };
 
     const reducer = (state, action) => {
         switch (action.type) {
-            case 'setRepo':
+            case 'update': {
                 return {
                     ...state,
-                    repository: action.payload
-                };
+                    ...action.state
+                }
+            }
             default:
                 return state;
         }
@@ -45,13 +52,13 @@ const App = () => {
             <Header/>
             <Content>
                 <InnerContent>
-                    <Router>
-                        <Main path="/">
-                            <Details path="details/:id"/>
-                        </Main>
-                    </Router>
+                    <Main path="/"/>
+                    <Details path="details/"/>
                 </InnerContent>
             </Content>
+            <ToastContainer
+                position={toast.POSITION.BOTTOM_CENTER}
+            />
         </StateProvider>
     );
 };

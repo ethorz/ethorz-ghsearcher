@@ -49,13 +49,16 @@ const Header = () => {
                 to="/"
                 onClick={function () {
                     dispatch({
-                        type: 'setRepo',
-                        payload: null
-                    })
+                        type: 'update',
+                        state: {
+                            repository: null
+
+                        }
+                    });
                 }}
             />
             <Title>
-                Repo: {repository.owner}/{repository.name}
+                {repository.profile}/{repository.repo}
             </Title>
         </Content>;
     }
