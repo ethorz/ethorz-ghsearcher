@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+*::selection {
+    background: #3bbcd4;
+    color: #ffffff;
+}
+*::-moz-selection {
+    background: #3bbcd4;
+    color: #ffffff;
+}
+
+html {
+    height: 100%;
+    padding: 0;
+    margin: 0 auto;
+    width: 600px;
+    background-color: #f1f2f6;
+}
+
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+}

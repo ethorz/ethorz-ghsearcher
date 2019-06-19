@@ -1,0 +1,37 @@
+{
+  "name": "ethorz-ghsearcher",
+  "version": "1.0.0",
+  "private": true,
+  "author": "ethorz (Igor Maslov)",
+  "homepage": "./",
+  "dependencies": {
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.12",
+    "@reach/router": "^1.2.1",
+    "axios": "^0.19.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "prop-types": "^15.7.2",
+    "react-scripts": "^3.0.1"
+  },
+  "scripts": {
+    "start": "REACT_APP_TOKEN=e43175062fd2990574f218cbe86f1981faa3b7c0 NODE_PATH=src react-scripts start",
+    "build": "NODE_PATH=src react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
