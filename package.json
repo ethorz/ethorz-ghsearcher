@@ -3,36 +3,29 @@
   "version": "1.0.0",
   "private": true,
   "author": "ethorz (Igor Maslov)",
-  "homepage": "./",
+  "homepage": "/",
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.12",
     "@reach/router": "^1.2.1",
     "axios": "^0.19.0",
+    "query-string": "^6.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-toastify": "^5.3.0"
   },
   "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "prop-types": "^15.7.2",
     "react-scripts": "^3.0.1"
   },
   "scripts": {
-    "start": "REACT_APP_TOKEN=46b56cb03ee4998445ced840273f554c9f2668da NODE_PATH=src react-scripts start",
-    "build": "NODE_PATH=src react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test:coverage": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": []
 }

@@ -1,36 +1,48 @@
 import React from 'react';
-import {Router} from '@reach/router';
+import {Router, Location} from '@reach/router';
 import {StateProvider} from 'utils/store';
+import {parse} from 'query-string';
 
 import Header from 'components/Header';
 import {ToastContainer, toast} from 'react-toastify';
 
 import Main from 'containers/Main';
 import Details from 'containers/Details';
+import NotFound from 'containers/NotFound';
 
 import styled from '@emotion/styled';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Content = styled('div')`
-    overflow: hidden;
+    flex: 1;
+    display: flex;
     flex-grow: 1;
-    position: relative;
+    flex-direction: column;
+    overflow: hidden;
 `;
 
 const InnerContent = styled(Router)`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     overflow: auto;
     padding: 2em;
 `;
 
+const routes = [
+    {
+        component: Main,
+        path: '/'
+    },
+    {
+        component: Details,
+        path: 'details'
+    }
+];
+
 const App = () => {
     const initialState = {
         query: '',
-        repository: null,
         repositories: []
     };
 
@@ -48,18 +60,34 @@ const App = () => {
     };
 
     return (
-        <StateProvider initialState={initialState} reducer={reducer}>
-            <Header/>
-            <Content>
-                <InnerContent>
-                    <Main path="/"/>
-                    <Details path="details/"/>
-                </InnerContent>
-            </Content>
-            <ToastContainer
-                position={toast.POSITION.BOTTOM_CENTER}
-            />
-        </StateProvider>
+        <Location>
+            {({location}) => {
+                location.query = parse(location.search);
+
+                return (
+                    <StateProvider initialState={initialState} reducer={reducer}>
+                        <Header
+                            location={location}
+                        />
+                        <Content>
+                            <InnerContent>
+                                {routes.map(({component: Component, path}) => (
+                                    <Component
+                                        key={path}
+                                        path={path}
+                                    />
+                                ))}
+                                <NotFound default />
+                            </InnerContent>
+
+                        </Content>
+                        <ToastContainer
+                            position={toast.POSITION.BOTTOM_CENTER}
+                        />
+                    </StateProvider>
+                )
+            }}
+        </Location>
     );
 };
 

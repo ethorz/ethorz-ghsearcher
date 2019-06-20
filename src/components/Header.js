@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from '@reach/router';
-import {useStateValue} from 'utils/store';
 
 import styled from '@emotion/styled';
 import {colors} from 'utils/config';
@@ -34,8 +34,8 @@ const Title = styled('h1')`
     text-align: center;
 `;
 
-const Header = () => {
-    const [{repository}, dispatch] = useStateValue();
+const Header = (props) => {
+    const {profile, repo} = props.location.query;
 
     let ContentComponents = <Content>
         <Title>
@@ -43,22 +43,13 @@ const Header = () => {
         </Title>
     </Content>;
 
-    if (repository) {
+    if (profile && repo) {
         ContentComponents = <Content>
             <Icon
                 to="/"
-                onClick={function () {
-                    dispatch({
-                        type: 'update',
-                        state: {
-                            repository: null
-
-                        }
-                    });
-                }}
             />
             <Title>
-                {repository.profile}/{repository.repo}
+                {profile}/{repo}
             </Title>
         </Content>;
     }
@@ -68,6 +59,10 @@ const Header = () => {
             {ContentComponents}
         </Container>
     )
+};
+
+Header.propTypes = {
+    location: PropTypes.object
 };
 
 export default Header

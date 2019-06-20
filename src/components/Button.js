@@ -18,8 +18,8 @@ const StyledButton = styled('input')`
 
 const Button = (props) => (
     <StyledButton
-        {...props}
         type="button"
+        {...props}
     />
 );
 

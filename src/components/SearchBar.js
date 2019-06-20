@@ -5,7 +5,7 @@ import Button from 'components/Button';
 
 import styled from '@emotion/styled';
 
-const Container = styled('div')`
+const Container = styled('form')`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -29,18 +29,22 @@ const SearchBar = (props) => {
         setValue(newValue);
     }
 
-    function onSearch() {
+    function onSubmit(e) {
+        e.preventDefault();
+
         props.onSearch(value);
     }
 
     return (
-        <Container>
+        <Container
+            onSubmit={onSubmit}
+        >
             <SearchInput
                 value={value}
                 onChange={onChange}
             />
             <SearchButton
-                onClick={onSearch}
+                type="submit"
                 value="Search"
             />
         </Container>

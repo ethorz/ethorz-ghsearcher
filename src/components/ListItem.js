@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styled from '@emotion/styled';
 import {colors} from 'utils/config';
@@ -78,6 +79,12 @@ const ListItem = (props) => {
             </Content>
         </Container>
     )
+};
+
+ListItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    image: PropTypes.string
 };
 
 export default ListItem

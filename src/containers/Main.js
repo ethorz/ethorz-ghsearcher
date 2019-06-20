@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from 'components/SearchBar';
 import ListItem from 'components/ListItem';
-import { navigate } from '@reach/router'
+import {navigate} from '@reach/router'
 import {useStateValue} from 'utils/store';
 
 import api from 'utils/api';
@@ -10,6 +10,10 @@ import styled from '@emotion/styled';
 import {colors, fonts} from 'utils/config';
 
 const Empty = styled('div')`
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
     color: ${colors.night};
     font-size: 50px;
     padding: 1em;
@@ -41,21 +45,11 @@ const Main = () => {
         const profile = repository.owner.login;
         const repo = repository.name;
 
-        dispatch({
-            type: 'update',
-            state: {
-                repository: {
-                    profile,
-                    repo
-                }
-            }
-        });
-
         navigate(`/details?profile=${profile}&repo=${repo}`);
     }
 
     return (
-        <>
+        <React.Fragment>
             <SearchBar
                 value={store.query}
                 onSearch={onSearch}
@@ -71,11 +65,11 @@ const Main = () => {
                 />
             ))}
             {!store.repositories.length &&
-                <Empty>
-                    Repository list is empty
-                </Empty>
+            <Empty>
+                Repository list is empty
+            </Empty>
             }
-        </>
+        </React.Fragment>
     )
 };
 

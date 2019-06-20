@@ -8,7 +8,7 @@ const github = axios.create({
 github.interceptors.response.use((response) => {
     return response;
 }, function(error) {
-    toast.error('Request error');
+    toast.error(`Request error: ${error.response.status}`);
     return Promise.reject(error);
 });
 
@@ -18,7 +18,9 @@ if (token) {
 }
 
 const getRepositories = (query) => github.get(`/search/repositories?q=${query}`);
+const getBranches = (profile, repo) => github.get(`/repos/${profile}/${repo}/branches`);
 
 export default {
-    getRepositories
+    getRepositories,
+    getBranches
 }
